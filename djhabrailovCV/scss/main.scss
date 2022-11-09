@@ -1,0 +1,27 @@
+@import "./fonts";
+
+.title {
+  &_bold {
+  }
+}
+
+.grid-cells {
+}
+
+.cell {
+  &__title {
+  }
+  &__subtitle {
+  }
+  &__text {
+  }
+  &__num {
+  }
+  &__link {
+  }
+}
+
+.line {
+}
+
+@import "./queries";

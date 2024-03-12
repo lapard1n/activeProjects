@@ -6,13 +6,9 @@ fetch('https://jsonplaceholder.typicode.com/todos/1')
   .then(response => response.json())
   .then(json => console.log(json))
 
-// fetch('https://jsonplaceholder.typicode.com/todos/1')
-//   .then((response) => {
-//     const state = response.ok;
-//     const jsonResp = response.json();
-//     return [state, jsonResp];
-//   })
-//   .then((respArr) => {
-//     console.log(respArr[0]);
-//     console.log(respArr[1]);
-//   })
+let newFetch = fetch('https://jsonplaceholder.typicode.com/todos/1');
+
+newFetch.then(response => response.ok)
+  .then(ok => console.log(ok))
+newFetch.then(response => response.json())
+  .then(json => console.log(json))

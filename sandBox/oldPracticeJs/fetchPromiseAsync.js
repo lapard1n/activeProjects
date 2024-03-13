@@ -31,6 +31,8 @@ fetch('https://jsonplaceholder.typicode.com/there-is-no-such-route')
   .finally(console.log('Тут должен был быть важный код~'))
 
 // СОЗДАНИЕ ФУНКЦИИ ДЛЯ ОБРАЩЕНИЯ НА СЕРВЕР, СОЗДАНИЕМ ЗАПРОСА
+const newUrl = 'https://jsonplaceholder.typicode.com/todos/69';
+
 const getData = url =>
   new Promise((resolve, reject) =>
     fetch(url)
@@ -38,7 +40,20 @@ const getData = url =>
       .then(json => resolve(json))
       .catch(error => reject(error))
   )
-
-getData('https://jsonplaceholder.typicode.com/todos/3')
-  .then(json => console.log(json))
+getData(newUrl)
+  .then(json => console.log(json, 'promise'))
   .catch(error => console.log(error.message))
+
+// ПРЕОБРАЖЕНИЕ ФУНКЦИИ ВЫШЕ С ПОМОЩЬЮ async/await
+const shortGetData = async (url) => {
+  const res = await fetch(url);
+  const json = await res.json();
+  return json;
+}
+const newData = await shortGetData(newUrl); //! ТАК НЕ ДЕЛАТЬ! ЭТО ТОЛЬКО ДЛЯ КОНСОЛИ~
+console.log(newData, 'async');
+
+// (async function newResp(pup) {
+//   const res = await shortGetData(pup);
+//   return console.log(res, 'async');
+// })(newUrl)

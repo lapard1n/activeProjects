@@ -35,3 +35,26 @@ second.then((number) => {
 })
 
 console.log('3');
+
+function log(params) {
+  console.log(params)
+}
+
+log('start');
+
+setTimeout(() => {
+  log('timeout')
+}, 3000);
+
+log('end');
+
+loop();
+
+function loop() {
+  console.log('loop');
+  setTimeout(function () {
+    console.log('setTimeout');
+  }, 0);
+}
+
+console.log('last');

@@ -1,0 +1,267 @@
+@font-face {
+  font-family: "Open Sans", sans-serif;
+  font-display: swap;
+  src: url(../fonts/OpenSans-Light.ttf);
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Open Sans", sans-serif;
+  font-display: swap;
+  src: url(../fonts/OpenSans-Regular.ttf);
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Open Sans", sans-serif;
+  font-display: swap;
+  src: url(../fonts/OpenSans-Medium.ttf);
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Open Sans", sans-serif;
+  font-display: swap;
+  src: url(../fonts/OpenSans-SemiBold.ttf);
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Open Sans", sans-serif;
+  font-display: swap;
+  src: url(../fonts/OpenSans-Bold.ttf);
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Open Sans", sans-serif;
+  font-display: swap;
+  src: url(../fonts/OpenSans-ExtraBold.ttf);
+  font-weight: 800;
+  font-style: normal;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  background-color: #f6f5f1;
+  letter-spacing: 1px;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+  position: relative;
+}
+
+.header {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #531405;
+}
+.header__content {
+  width: 1100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__logo {
+  height: 40px;
+  pointer-events: none;
+}
+.header__lang {
+  display: flex;
+  color: #f6f5f1;
+}
+.header__lang span {
+  width: 2px;
+  background: #f6f5f1;
+  margin: 0 5px;
+}
+.header__lang h2 {
+  cursor: pointer;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+}
+.main__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+  max-width: 1100px;
+  position: relative;
+}
+
+.title {
+  margin-bottom: 32px;
+  display: block;
+  position: relative;
+  z-index: 2;
+  overflow: visible;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  font-weight: 800;
+  font-size: 32px;
+}
+.title-logo {
+  width: 16px;
+  position: absolute;
+  top: 40%;
+  left: 4px;
+  transform: translate3d(0, -50%, 0);
+  z-index: -1;
+}
+
+.math-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row nowrap;
+  width: 100%;
+}
+.math-form__block {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-left: 16px;
+  width: auto;
+}
+.math-form__block:first-child {
+  margin-left: 0;
+}
+.math-form__label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.math-form__label span {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  background-image: url(../img/info-00.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 1rem;
+  cursor: pointer;
+}
+.math-form__variable {
+  height: 32px;
+  padding: 0 8px;
+  width: calc(100% - 20px);
+  border: solid 2px #531405;
+  cursor: pointer;
+}
+.math-form__variable:focus::-moz-placeholder {
+  opacity: 0;
+}
+.math-form__variable:focus::placeholder {
+  opacity: 0;
+}
+.math-form__buttons {
+  margin-top: 32px;
+}
+.math-form__buttons input {
+  padding: 16px 32px;
+  border: none;
+  outline: none;
+  color: #d7cecc;
+  background-color: #531405;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 20px;
+}
+.math-form__buttons input:hover {
+  color: #ffdfbc;
+  background-color: #711000;
+  text-shadow: 0 0 15px #fff;
+}
+.math-form__buttons input[type=submit] {
+  margin-right: 8px;
+}
+.math-form__result {
+  position: absolute;
+  bottom: 3px;
+  left: 0;
+  font-weight: 700;
+  font-size: 18px;
+}
+.math-form__result .result-row {
+  width: auto;
+  margin-bottom: 16px;
+}
+.math-form__result .result-row:last-child {
+  margin-bottom: 0;
+}
+.math-form__result .result-row span {
+  position: relative;
+}
+.math-form__result .result-row span::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  background-color: #531405;
+}
+
+.background {
+  width: 600px;
+  margin-top: 32px;
+  border-radius: 30px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+.footer {
+  width: 100%;
+  padding: 30px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: -96px;
+  background: #1d2932;
+}
+.footer__content {
+  width: 1100px;
+  color: #949494;
+}
+.footer__line {
+  height: 1px;
+  width: 100%;
+  background: #949494;
+}
+.footer__info {
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 400;
+  font-size: 14px;
+}
+.footer__info a:hover {
+  color: #aeadad;
+}/*# sourceMappingURL=main.css.map */

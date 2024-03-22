@@ -1,3 +1,18 @@
+"use strict"
+
+let name01 = 'Petya', age01 = 12, sex01 = 'no';
+
+let person01 = {
+  age01,
+  name01,
+  sex01,
+  greet() {
+    console.log(`Hi ${name01}, are u ${age01} years old?`);
+  }
+}
+
+person01.greet();
+
 // ОБЩЕПРИНЯТОЕ НАИМЕНОВАНИЕ ПЕРЕМЕННЫХ
 var PascalCase = 'Типы и классы';
 let camelCase = 'Все остальное';

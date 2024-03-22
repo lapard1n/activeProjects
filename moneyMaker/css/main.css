@@ -1,41 +1,35 @@
 @font-face {
-  font-family: "Open Sans", sans-serif;
-  font-display: swap;
+  font-family: "Open Sans";
   src: url(../fonts/OpenSans-Light.ttf);
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
-  font-family: "Open Sans", sans-serif;
-  font-display: swap;
+  font-family: "Open Sans";
   src: url(../fonts/OpenSans-Regular.ttf);
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
-  font-family: "Open Sans", sans-serif;
-  font-display: swap;
+  font-family: "Open Sans";
   src: url(../fonts/OpenSans-Medium.ttf);
   font-weight: 500;
   font-style: normal;
 }
 @font-face {
-  font-family: "Open Sans", sans-serif;
-  font-display: swap;
+  font-family: "Open Sans";
   src: url(../fonts/OpenSans-SemiBold.ttf);
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
-  font-family: "Open Sans", sans-serif;
-  font-display: swap;
+  font-family: "Open Sans";
   src: url(../fonts/OpenSans-Bold.ttf);
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
-  font-family: "Open Sans", sans-serif;
-  font-display: swap;
+  font-family: "Open Sans";
   src: url(../fonts/OpenSans-ExtraBold.ttf);
   font-weight: 800;
   font-style: normal;
@@ -48,7 +42,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-flow: column nowrap;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans";
   font-weight: 600;
   font-size: 16px;
   background-color: #f6f5f1;
@@ -120,8 +114,8 @@ body {
   z-index: 2;
   overflow: visible;
   -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  user-select: none;
   font-weight: 800;
   font-size: 32px;
 }
@@ -232,8 +226,8 @@ body {
   margin-top: 32px;
   border-radius: 30px;
   -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
 
 .footer {

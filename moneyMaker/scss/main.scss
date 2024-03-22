@@ -9,7 +9,7 @@ body {
   align-items: center;
   flex-flow: column nowrap;
   font: {
-    family: "Open Sans", sans-serif;
+    family: "Open Sans";
     weight: 600;
     size: 16px;
   }
@@ -81,6 +81,9 @@ body {
   position: relative;
   z-index: 2;
   overflow: visible;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
   font: {
     weight: 800;
@@ -137,6 +140,18 @@ body {
     width: calc(100% - 20px);
     border: solid 2px #531405;
     cursor: pointer;
+    &:focus::-webkit-input-placeholder {
+      opacity: 0;
+    }
+    &:focus::-moz-placeholder {
+      opacity: 0;
+    }
+    &:focus:-ms-input-placeholder {
+      opacity: 0;
+    }
+    &:focus::-ms-input-placeholder {
+      opacity: 0;
+    }
     &:focus::placeholder {
       opacity: 0;
     }
@@ -205,6 +220,9 @@ body {
   width: 600px;
   margin-top: 32px;
   border-radius: 30px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
 }
 

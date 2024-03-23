@@ -58,38 +58,93 @@
   font-size: 16px;
 }
 
-.background {
+.wrapper {
   width: 100%;
   min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../img/rose-petals.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center bottom 50px;
+}
+
+/* HEADER NAV */
+.header {
+  width: 100%;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url(../img/rose-petals.svg);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 10%);
+}
+.header__list {
+  min-width: 1040px;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__list div {
+  display: flex;
+  align-items: center;
+}
+.header__list a {
+  display: flex;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.header__list img {
+  width: 24px;
+  margin-right: 5px;
+}
+.header__list span {
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.header__list hr {
+  width: 2px;
+  height: 1rem;
+  margin: 0 5px;
+  display: inline-block;
+  background: #000000;
+  outline: none;
+  border: none;
 }
 
+/* MAIN APP */
 .todo-app {
   width: 100%;
   max-width: 540px;
-  padding: 25px 45px;
+  margin: 125px 30px;
+  padding: 30px 50px;
+  z-index: 1;
   background: #ffffff;
   border: 2px solid #e6e6e6;
   border-radius: 10px;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 10%);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 10%);
 }
-
 .todo-app__title {
-  margin-bottom: 25px;
+  margin-bottom: 30px;
   display: flex;
-  justify-content: left;
   align-items: center;
 }
-
 .todo-app__title span {
-  position: relative;
   font-weight: 900;
-  font-size: 24px;
+  font-size: 1.5rem;
 }
-
 .todo-app__title img {
   width: 48px;
   margin-left: 15px;
@@ -100,7 +155,6 @@
   user-select: none;
   pointer-events: none;
 }
-
 .todo-app__row {
   display: flex;
   justify-content: space-between;
@@ -108,9 +162,7 @@
   background: #e6e6e6;
   border-radius: 25px;
   padding-left: 25px;
-  margin-bottom: 35px;
 }
-
 .todo-app__row input {
   width: 100%;
   padding: 15px;
@@ -118,24 +170,89 @@
   outline: none;
   background: transparent;
 }
-
 .todo-app__row button {
   padding: 15px 35px;
   border: none;
   outline: none;
   background: #66b49d;
   border-radius: 25px;
-  font-size: 18px;
+  font-size: 1.2rem;
   font-weight: 700;
   text-transform: uppercase;
   color: #ffffff;
   cursor: pointer;
 }
-
-hr {
+.todo-app hr {
+  width: 100%;
   height: 2px;
+  margin: 30px 0;
   background: #e6e6e6;
-  border-radius: 25px;
   outline: none;
   border: none;
+}
+.todo-app__list {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.todo-app__element {
+  margin-bottom: 30px;
+  position: relative;
+}
+.todo-app__element:last-child {
+  margin-bottom: 0;
+}
+.todo-app__element.checked {
+  color: #555555;
+  text-decoration: line-through;
+}
+.todo-app__element.checked p::before {
+  background-image: url(../img/checked.webp);
+}
+.todo-app__element p {
+  padding-left: 40px;
+  cursor: pointer;
+}
+.todo-app__element p::before {
+  content: "";
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(0, -50%);
+  background-image: url(../img/unchecked.webp);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* FOOTER NAV */
+.footer {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  background: #ffffff;
+  box-shadow: 0px -4px 4px rgba(0, 0, 0, 10%);
+}
+.footer__list {
+  min-width: 1040px;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer__list a,
+.footer__list a:visited {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: inherit;
+  text-decoration: none;
 }

@@ -6,12 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>First To-Do list</title>
   <link rel="icon" href="./img/icon/favicon.ico">
-
-  <!--? Способ подключения шрифтов, с помощью CDN google fonts API -->
-  <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@100..900&display=swap" rel="stylesheet"> -->
-
   <link rel="stylesheet" href="./css/normalize.css">
   <link rel="stylesheet" href="./css/main.css">
 </head>
@@ -20,148 +14,68 @@
   <div class="wrapper">
     <header class="header">
       <nav class="header__list">
-        <a href="./index.html">
+
+        <a class="header__title" href="./index.html">
           <img src="./img/icon/favicon-32x32.png" alt="Logo To-Do List app">
           To-Do List
         </a>
-        <div>
-          <span>RU</span>
-          <hr>
-          <span>EN</span>
-        </div>
+
+        <section class="header__menu">
+          <div class="header__theme">
+            <img src="./img/moonDark.svg" alt="Dark theme button" id="dark-theme">
+            <img src="./img/sunLight.svg" alt="Light theme button" id="light-theme">
+          </div>
+          <div class="header__lang">
+            <span>RU</span>
+            <hr>
+            <span>EN</span>
+          </div>
+        </section>
+
       </nav>
     </header>
     <main class="todo-app">
-      <h2 class="todo-app__title">
-        <span>To-Do List:</span>
+
+      <header class="todo-app__title">
+        <h1>To-Do List:</h1>
         <img src="./img/toDoList.webp" alt="Icon To-Do project">
-      </h2>
+      </header>
+
       <section class="todo-app__row">
-        <input type="text" id="input-box" placeholder="Add your note...">
-        <button>Add</button>
+        <input class="todo-app__input" type="text" id="input-box" placeholder="Add your task..." autocomplete="off">
+        <button class="todo-app__button" id="input-button" disabled>Add</button>
       </section>
-      <hr>
-      <section class="todo-app__list">
-        <div class="todo-app__element checked">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          </p>
+
+      <hr class="todo-app__spacer">
+
+      <section class="todo-app__board" id="list-container">
+        <div class="todo-app__placeholder">
+          <p id="todo-app-placeholder">Add your task right here~</p>
         </div>
-        <div class="todo-app__element">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          </p>
-        </div>
-        <div class="todo-app__element">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          </p>
-        </div>
-        <div class="todo-app__element checked">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          </p>
-        </div>
-        <div class="todo-app__element">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          </p>
-        </div>
-        <div class="todo-app__element">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          </p>
-        </div>
-        <div class="todo-app__element checked">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          </p>
-        </div>
-        <div class="todo-app__element">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          </p>
-        </div>
-        <div class="todo-app__element">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          </p>
-        </div>
-        <div class="todo-app__element checked">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          </p>
-        </div>
-        <div class="todo-app__element">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          </p>
-        </div>
-        <div class="todo-app__element">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          </p>
-        </div>
-        <div class="todo-app__element checked">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          </p>
-        </div>
-        <div class="todo-app__element">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          </p>
-        </div>
-        <div class="todo-app__element">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          </p>
-        </div>
-        <div class="todo-app__element checked">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          </p>
-        </div>
-        <div class="todo-app__element">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          </p>
-        </div>
-        <div class="todo-app__element">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          </p>
-        </div>
+
+        <article class="task" id="task-prototype">
+          <p></p>
+          <div class="task__panel">
+            <img class="task__panel-button" src="./img/editDark.svg" alt="Button to change the task.">
+            <span></span>
+            <img class="task__panel-button" src="./img/trashDark.svg" alt="Button for deleting a task.">
+          </div>
+        </article>
       </section>
+
     </main>
     <footer class="footer">
       <section class="footer__list">
-        <a href="https://github.com/lapard1n">© lapard1n, Inc.</a>
+
+        <a href="https://github.com/lapard1n">© 2024 lapard1n, Inc.</a>
         <a target="_blank" href="mailto:whoisit@who.com&body=Good afternoon,?subject=To-Do List app">mail:
           whoisit@who.com</a>
         <a target="_blank" href="tel:+78005553535">call: 8 (800) 555-35-35</a>
+
       </section>
     </footer>
   </div>
-  <script></script>
+  <script src="./js/main.js"></script>
 </body>
 
 </html>

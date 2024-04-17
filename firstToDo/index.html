@@ -12,9 +12,9 @@
 
 <body>
   <div class="wrapper">
+
     <header class="header">
       <nav class="header__list">
-
         <a class="header__title" href="./index.html">
           <img src="./img/icon/favicon-32x32.png" alt="Logo To-Do List app">
           To-Do List
@@ -31,11 +31,10 @@
             <span>EN</span>
           </div>
         </section>
-
       </nav>
     </header>
-    <main class="todo-app">
 
+    <main class="todo-app">
       <header class="todo-app__title">
         <h1>To-Do List:</h1>
         <img src="./img/toDoList.webp" alt="Icon To-Do project">
@@ -43,37 +42,40 @@
 
       <section class="todo-app__row">
         <input class="todo-app__input" type="text" id="input-box" placeholder="Add your task..." autocomplete="off">
-        <button class="todo-app__button" id="input-button" disabled>Add</button>
+        <button class="todo-app__publish" id="input-publish" disabled>Add</button>
       </section>
 
       <hr class="todo-app__spacer">
 
-      <section class="todo-app__board" id="list-container">
-        <div class="todo-app__placeholder">
-          <p id="todo-app-placeholder">Add your task right here~</p>
-        </div>
-
+      <section class="todo-app__list" id="list-container">
         <article class="task" id="task-prototype">
           <p></p>
           <div class="task__panel">
-            <img class="task__panel-button" src="./img/editDark.svg" alt="Button to change the task.">
-            <span></span>
-            <img class="task__panel-button" src="./img/trashDark.svg" alt="Button for deleting a task.">
+            <img class="task__panel-button" src="./img/editDark.svg" alt="Button to change the task." data-change>
+            <img class="task__panel-button" src="./img/trashDark.svg" alt="Button for deleting a task." data-delete>
           </div>
         </article>
       </section>
 
+      <footer class="todo-app__info" id="tasks-info">
+        <div class="todo-app__counter">
+          <span class="todo-app__counter-value"></span>
+          <span class="todo-app__counter-value"></span>
+        </div>
+        <p class="todo-app__placeholder"></p>
+        <button class="todo-app__clear">Clear all</button>
+      </footer>
     </main>
+
     <footer class="footer">
       <section class="footer__list">
-
-        <a href="https://github.com/lapard1n">© 2024 lapard1n, Inc.</a>
+        <a target="_blank" href="https://github.com/lapard1n">© 2024 lapard1n, Inc.</a>
         <a target="_blank" href="mailto:whoisit@who.com&body=Good afternoon,?subject=To-Do List app">mail:
-          whoisit@who.com</a>
+          whoisit@itsme.com</a>
         <a target="_blank" href="tel:+78005553535">call: 8 (800) 555-35-35</a>
-
       </section>
     </footer>
+
   </div>
   <script src="./js/main.js"></script>
 </body>

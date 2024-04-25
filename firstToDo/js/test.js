@@ -65,3 +65,19 @@ function likes01(names) {
     default: return `${names[0]}, ${names[1]} and ${(names.length - 2)} others like this`;
   }
 }
+
+let str = `
+
+asd
+
+
+`
+
+function splitSpace(str) {
+  str = str.split(' ').join('');
+  return str ? true : false;
+}
+
+// console.log(splitSpace(str));
+let regExpSpaceCheker = /\S/;
+console.log(regExpSpaceCheker.test(str));

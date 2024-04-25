@@ -175,30 +175,45 @@
   pointer-events: none;
 }
 .todo-app__row {
+  height: 30px;
+  position: relative;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  overflow: hidden;
   background: #e6e6e6;
-  border-radius: 25px;
-  padding-left: 25px;
+  border-radius: 30px;
+  padding: 15px 0 15px 25px;
 }
 .todo-app__input {
   width: calc(100% - 145px);
-  height: 55px;
+  min-height: 25px;
+  line-height: 25px;
+  background: transparent;
   border: none;
   outline: none;
-  background: transparent;
+  resize: none;
   cursor: text;
+}
+.todo-app__range {
+  position: absolute;
+  bottom: 0.7rem;
+  right: calc(120px + (0.7rem * 0.5));
+  font-size: 0.7rem;
+  transform: translateY(50%);
 }
 .todo-app__publish {
   width: 120px;
-  height: 55px;
+  height: 60px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   border: none;
   outline: none;
   background: #66b49d;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 10%), 0px -2px 2px rgba(0, 0, 0, 10%),
     2px 0px 2px rgba(0, 0, 0, 10%), -2px 0px 2px rgba(0, 0, 0, 10%);
-  border-radius: 25px;
+  border-radius: 60px;
   font-size: 1.2rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -244,7 +259,7 @@
 .todo-app__counter-value {
   text-transform: lowercase;
   line-height: 1.2rem;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
 }
 .todo-app__placeholder {
   opacity: 60%;
@@ -256,6 +271,7 @@
   outline: none;
   border: none;
   text-transform: lowercase;
+  line-height: 20px;
 }
 .todo-app__clear:hover {
   cursor: pointer;
@@ -265,15 +281,16 @@
 }
 
 .line-animation {
-  background: #111111;
+  background: #000000;
   height: 2px;
   position: absolute;
   top: 50%;
+  transform: translateY(-50%);
 }
 @-webkit-keyframes line-animation {
   0% {
     width: 0;
-    left: 125%;
+    left: 120%;
     opacity: 0;
   }
   25% {
@@ -288,20 +305,20 @@
   }
   75% {
     width: 75%;
-    left: -25%;
+    left: -20%;
     opacity: 75%;
   }
   100% {
     width: 120%;
     left: 50%;
     opacity: 100%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(-50%);
   }
 }
 @keyframes line-animation {
   0% {
     width: 0;
-    left: 125%;
+    left: 120%;
     opacity: 0;
   }
   25% {
@@ -316,14 +333,14 @@
   }
   75% {
     width: 75%;
-    left: -25%;
+    left: -20%;
     opacity: 75%;
   }
   100% {
     width: 120%;
     left: 50%;
     opacity: 100%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(-50%);
   }
 }
 @-webkit-keyframes reverse-line {
@@ -331,11 +348,11 @@
     width: 120%;
     left: 50%;
     opacity: 100%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(-50%);
   }
   25% {
     width: 75%;
-    left: -25%;
+    left: -20%;
     opacity: 75%;
   }
   50% {
@@ -350,7 +367,7 @@
   }
   100% {
     width: 0;
-    left: 125%;
+    left: 120%;
     opacity: 0;
   }
 }
@@ -359,11 +376,11 @@
     width: 120%;
     left: 50%;
     opacity: 100%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(-50%);
   }
   25% {
     width: 75%;
-    left: -25%;
+    left: -20%;
     opacity: 75%;
   }
   50% {
@@ -378,7 +395,7 @@
   }
   100% {
     width: 0;
-    left: 125%;
+    left: 120%;
     opacity: 0;
   }
 }
@@ -402,6 +419,7 @@
   align-items: center;
   padding: 0 16px 0 40px;
   cursor: pointer;
+  word-break: break-all;
 }
 .task p::before {
   content: "";

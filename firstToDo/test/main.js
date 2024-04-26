@@ -1,6 +1,6 @@
 "use strict"
 
-const iputBox = document.getElementById('input-box');
+const inputBox = document.getElementById('input-box');
 const inputPublish = document.getElementById('input-publish');
 const listContainer = document.getElementById('list-container');
 const listInfo = document.getElementById('tasks-info');
@@ -42,16 +42,16 @@ function cloneTask(str) {
 
 // РАСШИРЕНИЕ ЭЛЕМЕНТА input:
 function resizeTextarea() {
-  let rowHeight = window.getComputedStyle(iputBox).lineHeight;
+  let rowHeight = window.getComputedStyle(inputBox).lineHeight;
   rowHeight = rowHeight.replace(/\D/g, '');
 
-  if (iputBox.scrollHeight / rowHeight <= 5) {
-    iputBox.style.height = 'auto';
-    iputBox.style.height = iputBox.scrollHeight + 'px';
-    iputBox.parentNode.style.height = 5 + (iputBox.scrollHeight) + 'px';
+  if (inputBox.scrollHeight / rowHeight <= 5) {
+    inputBox.style.height = 'auto';
+    inputBox.style.height = inputBox.scrollHeight + 'px';
+    inputBox.parentNode.style.height = 5 + (inputBox.scrollHeight) + 'px';
   } else {
-    iputBox.style.height = rowHeight * 5 + 'px';
-    iputBox.parentNode.style.height = 5 + (rowHeight * 5) + 'px';
+    inputBox.style.height = rowHeight * 5 + 'px';
+    inputBox.parentNode.style.height = 5 + (rowHeight * 5) + 'px';
   }
 }
 resizeTextarea();
@@ -59,18 +59,18 @@ resizeTextarea();
 // ПОДСЧЕТ ВВОДИМЫХ СМВОЛОВ В СТРОКЕ input:
 function rowRangeFinder() {
   let rowRange = document.querySelector('.todo-app__range');
-  rowRange.textContent = `${iputBox.value.length}/404`;
+  rowRange.textContent = `${inputBox.value.length}/404`;
 }
 rowRangeFinder();
 
 // ПРОВЕРКА ВВОДА В ПОЛЕ input:
 const regExpSpaceCheker = /\S/;
-iputBox.addEventListener('input', () => {
-  if (!regExpSpaceCheker.test(iputBox.value) && !inputPublish.hasAttribute('disabled')) {
+inputBox.addEventListener('input', () => {
+  if (!regExpSpaceCheker.test(inputBox.value) && !inputPublish.hasAttribute('disabled')) {
     inputPublish.setAttribute('disabled', 'disabled');
   }
 
-  if (regExpSpaceCheker.test(iputBox.value) && inputPublish.hasAttribute('disabled')) {
+  if (regExpSpaceCheker.test(inputBox.value) && inputPublish.hasAttribute('disabled')) {
     inputPublish.removeAttribute('disabled');
   }
 
@@ -84,13 +84,13 @@ function addingTask(event) {
     event.preventDefault();
 
     if (!inputPublish.hasAttribute('disabled')) {
-      cloneTask(iputBox.value.trim());
-      iputBox.parentNode.style.height = '30px';
-      iputBox.setAttribute('rows', 1);
-      iputBox.value = '';
+      cloneTask(inputBox.value.trim());
+      inputBox.parentNode.style.height = '30px';
+      inputBox.setAttribute('rows', 1);
+      inputBox.value = '';
     }
 
-    if (!regExpSpaceCheker.test(iputBox.value) && !inputPublish.hasAttribute('disabled')) {
+    if (!regExpSpaceCheker.test(inputBox.value) && !inputPublish.hasAttribute('disabled')) {
       inputPublish.setAttribute('disabled', 'disabled');
     }
 
@@ -104,7 +104,7 @@ function addingTask(event) {
   }
 }
 inputPublish.addEventListener('click', addingTask);
-iputBox.addEventListener('keydown', addingTask);
+inputBox.addEventListener('keydown', addingTask);
 
 // ОБРАБОТКА СОДЕРЖИМОГО todo-app__info:
 function personalObserver() {
@@ -125,6 +125,7 @@ function personalObserver() {
 
   saveLocal();
 }
+// window.addEventListener('load', personalObserver);
 
 // ДЕЛЕГИРОВАНИЕ СОБЫТИЙ В todo-app__list:
 listContainer.addEventListener('click', (e) => {
@@ -156,7 +157,7 @@ listInfo.addEventListener('click', (e) => {
   let eventTarget = e.target;
 
   if (eventTarget.matches('.todo-app__placeholder')) {
-    iputBox.focus();
+    inputBox.focus();
   }
 
   if ((eventTarget.matches('.todo-app__clear') || eventTarget === clearButton.querySelector('span')) && !eventTarget.hasAttribute('disabled')) {

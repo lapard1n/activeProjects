@@ -32,14 +32,6 @@ function showLocal() {
 }
 showLocal();
 
-// СОЗДАНИЕ ЭЛЕМЕНТА task ЧЕРЕЗ КОПИРОВАНИЯ УЗЛА:
-function cloneTask(str) {
-  const task = taskPrototype.cloneNode(true);
-  const taskText = task.querySelector('p');
-  taskText.innerText = str;
-  listContainer.prepend(task);
-}
-
 // РАСШИРЕНИЕ ЭЛЕМЕНТА input:
 function resizeTextarea() {
   let rowHeight = window.getComputedStyle(inputBox).lineHeight;
@@ -77,6 +69,14 @@ inputBox.addEventListener('input', () => {
   resizeTextarea();
   rowRangeFinder();
 })
+
+// СОЗДАНИЕ ЭЛЕМЕНТА task ЧЕРЕЗ КОПИРОВАНИЯ УЗЛА:
+function cloneTask(str) {
+  const task = taskPrototype.cloneNode(true);
+  const taskText = task.querySelector('p');
+  taskText.innerText = str;
+  listContainer.prepend(task);
+}
 
 // ДОБАВЛЕНИЕ ТЕКСТА ИЗ input:
 function addingTask(event) {
@@ -170,7 +170,7 @@ listInfo.addEventListener('click', (e) => {
 
 // УПРАВЛЕНИЕ АНИМАЦИЕЙ line-animation:
 clearButton.addEventListener('mouseenter', (event) => {
-  if (event.target === clearButton && !event.target.hasAttribute('disabled')) {
+  if (event.target === clearButton && event.target !== clearButton.querySelector('span') && !event.target.hasAttribute('disabled')) {
     let clearLine = document.createElement('span');
     clearLine.classList.add('line-animation');
     clearLine.style.animation = 'line-animation ease 500ms forwards';
@@ -178,7 +178,7 @@ clearButton.addEventListener('mouseenter', (event) => {
   }
 })
 clearButton.addEventListener('mouseleave', (event) => {
-  if (event.target === clearButton) {
+  if (event.target === clearButton && event.target !== clearButton.querySelector('span')) {
     let clearLine = clearButton.querySelectorAll('span');
     clearLine.forEach(element => {
       element.style.animation = 'reverse-line ease 500ms forwards';
@@ -186,3 +186,5 @@ clearButton.addEventListener('mouseleave', (event) => {
     })
   }
 })
+
+// КРЧ, рассказываю, берешь и оборачиваешь button в родителя, делаешь ему позитионе релативе, и адаптируешь под размеры контента и накладываешь в итоге анимацию поверх буттона, а не внутри него - база

@@ -128,8 +128,8 @@ function personalObserver() {
 // window.addEventListener('load', personalObserver);
 
 // ДЕЛЕГИРОВАНИЕ СОБЫТИЙ В todo-app__list:
-listContainer.addEventListener('click', (e) => {
-  let eventTarget = e.target;
+listContainer.addEventListener('click', (event) => {
+  let eventTarget = event.target;
   let taskElement = eventTarget.closest('.task');
 
   if (eventTarget.hasAttribute('data-delete')) {
@@ -153,8 +153,8 @@ listContainer.addEventListener('click', (e) => {
 })
 
 // ДЕЛЕГИРОВАНИЕ СОБЫТИЙ ДЛЯ todo-app__info:
-listInfo.addEventListener('click', (e) => {
-  let eventTarget = e.target;
+listInfo.addEventListener('click', (event) => {
+  let eventTarget = event.target;
 
   if (eventTarget.matches('.todo-app__placeholder')) {
     inputBox.focus();

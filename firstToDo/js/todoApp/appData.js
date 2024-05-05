@@ -6,7 +6,7 @@ import {
 } from "./appElements.js";
 
 /**
- * СОХРАНЕНИЕ ДАННЫХ В localstorage:
+ * СОХРАНЕНИЕ ДАННЫХ В localStorage
  *
  */
 function saveLocal() {
@@ -17,7 +17,7 @@ function saveLocal() {
 }
 
 /**
- * ЗАГРУЗКА ДАННЫХ ИЗ localstorage:
+ * ЗАГРУЗКА ДАННЫХ ИЗ localStorage
  *
  */
 function showLocal() {

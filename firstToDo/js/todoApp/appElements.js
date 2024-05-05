@@ -1,5 +1,5 @@
 /**
- * Description placeholder
+ * ЭЛЕМЕНТЫ todoApp
  *
  */
 const inputBox = document.getElementById('input-box');

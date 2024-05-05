@@ -7,7 +7,7 @@ import {
 import { saveLocal } from "./appData.js";
 
 /**
- * ОБРАБОТКА СОДЕРЖИМОГО listInfo:
+ * ОБРАБОТКА СОДЕРЖИМОГО listContainer И ОТОБРАЖЕНИЕ В listInfo
  *
  */
 function personalObserver() {

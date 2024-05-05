@@ -57,7 +57,9 @@
 
       <section class="todo-app__list" id="list-container">
         <article class="task" id="task-prototype">
-          <p></p>
+          <div class="task__content">
+            <p></p>
+          </div>
           <div class="task__panel">
             <img class="task__panel-button" src="./img/editDark.svg" alt="Button to change the task." data-change>
             <img class="task__panel-button" src="./img/trashDark.svg" alt="Button for deleting a task." data-delete>
@@ -71,7 +73,11 @@
           <span class="todo-app__counter-value"></span>
         </div>
         <p class="todo-app__placeholder"></p>
-        <button class="todo-app__clear">Clear all</button>
+        <div class="todo-app__cleaning">
+          <button class="todo-app__clear">Clear all</button>
+          <span class="todo-app__strike"></span>
+        </div>
+
       </footer>
     </main>
 

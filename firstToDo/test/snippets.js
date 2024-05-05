@@ -34,3 +34,14 @@ function splitSpace(str) {
   console.log(str);
   return str ? true : false;
 }
+
+// checked НЕ checked - заменилось toggle~
+function taskChecker(eventTarget, taskElement) {
+  let taskContent = taskElement.querySelector('.task__content')
+
+  if (!taskContent.classList.contains('checked')) {
+    taskContent.classList.add('checked');
+  } else {
+    taskContent.classList.remove('checked');
+  }
+}

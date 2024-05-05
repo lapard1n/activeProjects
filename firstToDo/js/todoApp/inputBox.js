@@ -1,57 +1,59 @@
 import { inputBox, inputPublish } from "./appElements.js";
 
 /**
- * РАСШИРЕНИЕ ЭЛЕМЕНТА input:
+ * РАСШИРЕНИЕ ЭЛЕМЕНТА inputBox
  *
  */
-function resizeTextarea() {
-  let rowHeight = window.getComputedStyle(inputBox).lineHeight;
+function resizeTextarea(thisInput) {
+  let rowHeight = window.getComputedStyle(thisInput).lineHeight;
   rowHeight = rowHeight.replace(/\D/g, '');
 
-  if (inputBox.scrollHeight / rowHeight <= 5) {
-    inputBox.style.height = 'auto';
-    inputBox.style.height = inputBox.scrollHeight + 'px';
-    inputBox.parentNode.style.height = 5 + (inputBox.scrollHeight) + 'px';
+  if (thisInput.scrollHeight / rowHeight <= 5) {
+    thisInput.style.height = 'auto';
+    thisInput.style.height = thisInput.scrollHeight + 'px';
+    thisInput.parentNode.style.height = 5 + (thisInput.scrollHeight) + 'px';
   } else {
-    inputBox.style.height = rowHeight * 5 + 'px';
-    inputBox.parentNode.style.height = 5 + (rowHeight * 5) + 'px';
+    thisInput.style.height = rowHeight * 5 + 'px';
+    thisInput.parentNode.style.height = 5 + (rowHeight * 5) + 'px';
   }
 }
 
 /**
- * ПОДСЧЕТ ВВОДИМЫХ СМВОЛОВ В СТРОКЕ input:
+ * ПОДСЧЕТ ВВОДИМЫХ СМВОЛОВ В СТРОКЕ inputBox
  *
  */
-function rowRangeFinder() {
-  let rowRange = document.querySelector('.todo-app__range');
-  rowRange.textContent = `${inputBox.value.length}/404`;
+function rowRangeFinder(thisRow, thisInput) {
+  let rowRange = thisRow.querySelector('.todo-app__range');
+  rowRange.textContent = `${thisInput.value.length}/404`;
 }
 
 /**
- * ПРОВЕРКА ВВОДА В ПОЛЕ input:
+ * ПРОВЕРКА ВВОДА В ПОЛЕ inputBox
  *
  */
-function inputBoxListener() {
-  inputBox.addEventListener('input', () => {
-    let regExpSpaceCheker = /\S/;
+function inputBoxListener(thisRow, thisInput, thisButton) {
+  let regExpSpaceCheker = /\S/;
 
-    if (!regExpSpaceCheker.test(inputBox.value) && !inputPublish.hasAttribute('disabled')) {
-      inputPublish.setAttribute('disabled', 'disabled');
-    }
+  if (!regExpSpaceCheker.test(thisInput.value) && !thisButton.hasAttribute('disabled')) {
+    thisButton.setAttribute('disabled', 'disabled');
+  }
 
-    if (regExpSpaceCheker.test(inputBox.value) && inputPublish.hasAttribute('disabled')) {
-      inputPublish.removeAttribute('disabled');
-    }
+  if (regExpSpaceCheker.test(thisInput.value) && thisButton.hasAttribute('disabled')) {
+    thisButton.removeAttribute('disabled');
+  }
 
-    resizeTextarea();
-    rowRangeFinder();
-  })
+  resizeTextarea(thisInput);
+  rowRangeFinder(thisRow, thisInput);
 }
 
+/**
+ * ИНИЦИАЛИЗАЦИЯ МОДУЛЯ inputBox
+ *
+ */
 function inputBoxInit() {
-  resizeTextarea();
-  rowRangeFinder();
-  inputBoxListener();
+  resizeTextarea(inputBox);
+  rowRangeFinder(inputBox.parentElement, inputBox);
+  inputBox.addEventListener('input', () => inputBoxListener(inputBox.parentElement, inputBox, inputPublish));
 }
 
-export { resizeTextarea, rowRangeFinder, inputBoxInit }
+export { resizeTextarea, rowRangeFinder, inputBoxListener, inputBoxInit }

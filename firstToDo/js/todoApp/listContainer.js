@@ -8,11 +8,12 @@ import { saveLocal } from "./appData.js";
 import { personalObserver } from "./personalObserver.js";
 import {
   resizeTextarea,
-  rowRangeFinder
+  rowRangeFinder,
+  inputBoxListener
 } from "./inputBox.js";
 
 /**
- * УДАЛЕНИЕ ПРОТОТИПА task:
+ * УДАЛЕНИЕ ПРОТОТИПА task
  */
 function removePrototypeTask() {
   taskPrototype.removeAttribute('id');
@@ -20,18 +21,18 @@ function removePrototypeTask() {
 }
 
 /**
- * СОЗДАНИЕ ЭЛЕМЕНТА task ЧЕРЕЗ КОПИРОВАНИЯ УЗЛА:
+ * СОЗДАНИЕ ЭЛЕМЕНТА task ЧЕРЕЗ КОПИРОВАНИЯ УЗЛА
  *
  */
 function cloneTask(str) {
   const task = taskPrototype.cloneNode(true);
-  const taskText = task.querySelector('p');
+  const taskText = task.querySelector('.task__content p');
   taskText.innerText = str;
   listContainer.prepend(task);
 }
 
 /**
- * ДОБАВЛЕНИЕ ТЕКСТА ИЗ inputBox:
+ * ДОБАВЛЕНИЕ НОВОГО ЭЛЕМЕНТА task В list listContainer
  *
  */
 function addingTask(event) {
@@ -52,8 +53,8 @@ function addingTask(event) {
     }
 
     if (inputPublish.hasAttribute('disabled')) {
-      resizeTextarea();
-      rowRangeFinder();
+      resizeTextarea(inputBox);
+      rowRangeFinder(inputBox.parentElement, inputBox);
     }
 
     personalObserver();
@@ -62,27 +63,61 @@ function addingTask(event) {
 }
 
 /**
- * ДЕЛЕГИРОВАНИЕ СОБЫТИЙ В listContainer:
+ * ИЗМЕНЕНИЕ ТЕКСТА В task
+ *
+ */
+function changingTask(event) {
+  const eventTarget = event.target.closest('.task');
+  const textElement = eventTarget.querySelector('.task__content');
+  const textItself = textElement.querySelector('p');
+  const newRow = inputBox.parentElement.cloneNode(true);
+  const newInput = newRow.querySelector('.todo-app__input');
+  const newPublish = newRow.querySelector('.todo-app__publish');
+
+  eventTarget.querySelector('img[data-change]').remove();
+  newRow.querySelector('.todo-app__input').value = textItself.textContent;
+  newRow.querySelector('.todo-app__publish').textContent = 'Edit';
+  newRow.classList.add('todo-app__row_editor');
+  textElement.classList.add('task__content_editing');
+  textItself.replaceWith(newRow);
+
+  inputBoxListener(newRow, newInput, newPublish);
+  newRow.addEventListener('input', () => inputBoxListener(newRow, newInput, newPublish));
+
+  newPublish.addEventListener('click', () => pasteText(event));
+  newInput.addEventListener('keydown', () => pasteText(event));
+}
+
+/**
+ * ЗАМЕНА ТЕКСТА В task
+ *
+ */
+function pasteText(event) {
+  if (event.type === 'click' || (event.key === 'Enter' || event.code === 'Enter') && !event.shiftKey) {
+    console.log(event.type);
+  }
+}
+
+/**
+ * ДЕЛЕГИРОВАНИЕ СОБЫТИЙ В listContainer
  *
  */
 function tasksEditor(event) {
   let eventTarget = event.target;
   let taskElement = eventTarget.closest('.task');
+  let taskContent = taskElement.querySelector('.task__content');
 
   if (eventTarget.hasAttribute('data-delete')) {
     taskElement.remove();
   }
 
   if (eventTarget.hasAttribute('data-change')) {
-    console.log('change');
+    changingTask(event);
   }
 
-  if (eventTarget.tagName === 'P') {
-    if (!taskElement.classList.contains('checked')) {
-      taskElement.classList.add('checked');
-    } else {
-      taskElement.classList.remove('checked');
-    }
+  if (eventTarget.matches('.task__content') ||
+    eventTarget == taskElement.querySelector('p')) {
+    taskContent.classList.toggle('checked');
   }
 
   personalObserver();
@@ -90,7 +125,7 @@ function tasksEditor(event) {
 }
 
 /**
- * СОБЫТИЯ ДОБАВЛЕНИЯ ТЕКСТА В listContainer:
+ * ИНИЦИАЛИЗАЦИЯ МОДУЛЯ listContainer
  *
  */
 function listContainerInit() {

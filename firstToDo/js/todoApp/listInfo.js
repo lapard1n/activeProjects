@@ -8,7 +8,7 @@ import { saveLocal } from "./appData.js";
 import { personalObserver } from "./personalObserver.js";
 
 /**
- * ДЕЛЕГИРОВАНИЕ СОБЫТИЙ ДЛЯ listInfo:
+ * ДЕЛЕГИРОВАНИЕ СОБЫТИЙ ДЛЯ listInfo
  *
  */
 function listInfoListener() {
@@ -19,7 +19,7 @@ function listInfoListener() {
       inputBox.focus();
     }
 
-    if ((eventTarget.matches('.todo-app__clear') || eventTarget === clearButton.querySelector('span')) && !eventTarget.hasAttribute('disabled')) {
+    if ((eventTarget.matches('.todo-app__clear') || eventTarget === document.querySelector('.todo-app__strike')) && !eventTarget.hasAttribute('disabled')) {
       listContainer.innerHTML = '';
 
       personalObserver();
@@ -29,32 +29,31 @@ function listInfoListener() {
 }
 
 /**
- * УПРАВЛЕНИЕ АНИМАЦИЕЙ clearButton:
+ * УПРАВЛЕНИЕ АНИМАЦИЕЙ clearButton
  *
  */
 function clearButtonListener() {
-  clearButton.addEventListener('mouseenter', (event) => {
-    if (event.target === clearButton && event.target !== clearButton.querySelector('span') && !event.target.hasAttribute('disabled')) {
-      let clearLine = document.createElement('span');
-      clearLine.classList.add('line-animation');
+  let animeState = 0;
+  let clearLine = document.querySelector('.todo-app__strike');
+
+  clearButton.addEventListener('mouseenter', () => {
+    if (!clearButton.hasAttribute("disabled")) {
       clearLine.style.animation = 'line-animation ease 500ms forwards';
-      clearButton.append(clearLine);
+      animeState++;
     }
   })
 
-  clearButton.addEventListener('mouseleave', (event) => {
-    if (event.target === clearButton && event.target !== clearButton.querySelector('span')) {
-      let clearLine = clearButton.querySelectorAll('span');
-      clearLine.forEach(element => {
-        element.style.animation = 'reverse-line ease 500ms forwards';
-        setTimeout(() => { element.remove() }, 500);
-      })
+  clearButton.parentElement.addEventListener('mouseleave', () => {
+    if (animeState != 0) {
+      clearLine.style.animation = 'reverse-line ease 500ms forwards';
+      animeState--
     }
   })
 }
 
 /**
- * Description placeholder
+ * ИНИЦИАЛИЗАЦИЯ МОДУЛЯ listInfo
+ *
  */
 function listInfoInit() {
   listInfoListener();
@@ -62,5 +61,3 @@ function listInfoInit() {
 }
 
 export { listInfoInit }
-
-// КРЧ, рассказываю, берешь и оборачиваешь button в родителя, делаешь ему позитионе релативе, и адаптируешь под размеры контента и накладываешь в итоге анимацию поверх буттона, а не внутри него - база

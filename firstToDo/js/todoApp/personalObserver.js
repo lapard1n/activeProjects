@@ -12,7 +12,7 @@ import { saveLocal } from "./appData.js";
  */
 function personalObserver() {
   let tasksQuantity = listInfo.querySelectorAll('.todo-app__counter-value');
-  let numberChecked = listContainer.querySelectorAll('.task.checked');
+  let numberChecked = listContainer.querySelectorAll('.task__content.checked');
 
   if (listContainer.childNodes.length === 0) {
     placeHolder.textContent = 'Add your task right here~';

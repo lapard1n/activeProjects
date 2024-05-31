@@ -20,11 +20,21 @@ function listInfoListener() {
     }
 
     if ((eventTarget.matches('.todo-app__clear') || eventTarget === document.querySelector('.todo-app__strike')) && !eventTarget.hasAttribute('disabled')) {
-      listContainer.innerHTML = '';
+      let allTasks = document.querySelectorAll('.task');
 
-      personalObserver();
-      saveLocal();
+      allTasks.forEach(el => {
+        el.classList.add('task-deletion');
+      });
+
+      setTimeout(() => {
+        listContainer.innerHTML = '';
+        personalObserver();
+        saveLocal();
+      }, 500);
     }
+
+    personalObserver();
+    saveLocal();
   })
 }
 
@@ -33,20 +43,20 @@ function listInfoListener() {
  *
  */
 function clearButtonListener() {
-  let animeState = 0;
+  let animeState = false;
   let clearLine = document.querySelector('.todo-app__strike');
 
   clearButton.addEventListener('mouseenter', () => {
     if (!clearButton.hasAttribute("disabled")) {
       clearLine.style.animation = 'line-animation ease 500ms forwards';
-      animeState++;
+      animeState = true;
     }
   })
 
   clearButton.parentElement.addEventListener('mouseleave', () => {
-    if (animeState != 0) {
+    if (animeState == true) {
       clearLine.style.animation = 'reverse-line ease 500ms forwards';
-      animeState--
+      animeState = false;
     }
   })
 }

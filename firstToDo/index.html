@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="./css/normalize.css">
   <link rel="stylesheet" href="./css/fonts.css">
   <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/animations.css">
 
   <link rel="stylesheet" href="./css/elements/header.css">
   <link rel="stylesheet" href="./css/elements/main.css">
@@ -18,7 +19,6 @@
 
 <body>
   <div class="wrapper">
-
     <header class="header">
       <nav class="header__list">
         <a class="header__title" href="./index.html">
@@ -41,9 +41,25 @@
     </header>
 
     <main class="todo-app">
-      <header class="todo-app__title">
-        <h1>To-Do List:</h1>
-        <img src="./img/toDoList.webp" alt="Icon To-Do project">
+      <header class="todo-app__header">
+        <div class="todo-app__title">
+          <h1>To-Do List:</h1>
+          <img src="./img/toDoList.webp" alt="Icon To-Do project">
+        </div>
+
+        <div class="todo-app__filter">
+          <div class="todo-app__filter-row">
+            <span data-all data-target>All</span>
+            <button class="todo-app__filter-button">
+              <img src="./img/arrowDownLight.svg" alt="Button that opens the list">
+            </button>
+          </div>
+          <div class="todo-app__filter-list">
+            <span class="todo-app__filter-element" data-checked>Checked</span>
+            <span class="todo-app__filter-element" data-unchecked>Unchecked</span>
+          </div>
+        </div>
+
       </header>
 
       <section class="todo-app__row">
@@ -56,7 +72,7 @@
       <hr class="todo-app__spacer">
 
       <section class="todo-app__list" id="list-container">
-        <article class="task" id="task-prototype">
+        <article class="task" id="task-prototype" draggable="true">
           <div class="task__content">
             <p></p>
           </div>
@@ -77,13 +93,12 @@
           <button class="todo-app__clear">Clear all</button>
           <span class="todo-app__strike"></span>
         </div>
-
       </footer>
-    </main>
 
-    <button class="scroll-arrow">
-      <img src="./img/arrowDark.svg" alt="">
-    </button>
+      <button class="scroll-arrow">
+        <img src="./img/arrowDark.svg" alt="Button for srolling." draggable="false">
+      </button>
+    </main>
 
     <footer class="footer">
       <section class="footer__list">
@@ -93,7 +108,6 @@
         <a target="_blank" href="tel:+78005553535">call: 8 (800) 555-35-35</a>
       </section>
     </footer>
-
   </div>
 
   <script type="module" src="./js/app.js"></script>

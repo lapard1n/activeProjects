@@ -1,4 +1,5 @@
 import { inputBox, inputPublish } from "./appElements.js";
+import { taskFilter } from "./taskFilter.js";
 
 /**
  * РАСШИРЕНИЕ ЭЛЕМЕНТА inputBox
@@ -47,13 +48,14 @@ function inputBoxListener(thisRow, thisInput, thisButton) {
 }
 
 /**
- * ИНИЦИАЛИЗАЦИЯ МОДУЛЯ inputBox
+ * ИНИЦИАЛИЗАЦИЯ МОДУЛЯ inputBox И ФИЛЬТРА tasks
  *
  */
 function inputBoxInit() {
   resizeTextarea(inputBox);
   rowRangeFinder(inputBox.parentElement, inputBox);
   inputBox.addEventListener('input', () => inputBoxListener(inputBox.parentElement, inputBox, inputPublish));
+  taskFilter();
 }
 
 export { resizeTextarea, rowRangeFinder, inputBoxListener, inputBoxInit }

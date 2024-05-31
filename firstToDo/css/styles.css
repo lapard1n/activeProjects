@@ -5,7 +5,8 @@
   font-family: "Nunito", sans-serif;
   font-weight: 500;
   font-size: 18px;
-  scrollbar-width: none;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 * ::-webkit-scrollbar {
@@ -22,8 +23,4 @@
   justify-content: center;
   align-items: center;
   background: linear-gradient(135deg, #66b49d, #34b5a6, #00adb5);
-}
-
-.scroll-arrow {
-  visibility: hidden;
 }

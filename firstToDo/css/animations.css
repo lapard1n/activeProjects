@@ -38,22 +38,22 @@
   25% {
     width: 25%;
     left: 100%;
-    opacity: 25%;
+    opacity: 20%;
   }
   50% {
     width: 50%;
     left: 0;
-    opacity: 50%;
+    opacity: 40%;
   }
   75% {
     width: 75%;
     left: -20%;
-    opacity: 75%;
+    opacity: 60%;
   }
   100% {
     width: 120%;
     left: 50%;
-    opacity: 100%;
+    opacity: 80%;
     transform: translateX(-50%) translateY(-50%);
   }
 }
@@ -66,22 +66,22 @@
   25% {
     width: 25%;
     left: 100%;
-    opacity: 25%;
+    opacity: 20%;
   }
   50% {
     width: 50%;
     left: 0;
-    opacity: 50%;
+    opacity: 40%;
   }
   75% {
     width: 75%;
     left: -20%;
-    opacity: 75%;
+    opacity: 60%;
   }
   100% {
     width: 120%;
     left: 50%;
-    opacity: 100%;
+    opacity: 80%;
     transform: translateX(-50%) translateY(-50%);
   }
 }
@@ -89,23 +89,23 @@
   0% {
     width: 120%;
     left: 50%;
-    opacity: 100%;
+    opacity: 80%;
     transform: translateX(-50%) translateY(-50%);
   }
   25% {
     width: 75%;
     left: -20%;
-    opacity: 75%;
+    opacity: 60%;
   }
   50% {
     width: 50%;
     left: 0;
-    opacity: 50%;
+    opacity: 40%;
   }
   75% {
     width: 25%;
     left: 100%;
-    opacity: 25%;
+    opacity: 20%;
   }
   100% {
     width: 0;
@@ -117,23 +117,23 @@
   0% {
     width: 120%;
     left: 50%;
-    opacity: 100%;
+    opacity: 80%;
     transform: translateX(-50%) translateY(-50%);
   }
   25% {
     width: 75%;
     left: -20%;
-    opacity: 75%;
+    opacity: 60%;
   }
   50% {
     width: 50%;
     left: 0;
-    opacity: 50%;
+    opacity: 40%;
   }
   75% {
     width: 25%;
     left: 100%;
-    opacity: 25%;
+    opacity: 20%;
   }
   100% {
     width: 0;

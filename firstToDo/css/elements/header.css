@@ -27,11 +27,37 @@
   text-decoration: none;
   font-size: 1.2rem;
   font-weight: 800;
+  position: relative;
+  transition: color 400ms ease;
+}
+
+.header__title::after {
+  content: "";
+  height: 3px;
+  width: 0;
+  position: absolute;
+  top: 50%;
+  left: 30px;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 100%);
+  border-radius: 25px;
+  transition: width 400ms ease;
 }
 
 .header__title img {
   width: 24px;
-  margin-right: 5px;
+  margin-right: 6px;
+  transition: transform 400ms ease;
+}
+
+.header__title:hover {
+  color: rgba(0, 0, 0, 80%);
+}
+.header__title:hover::after {
+  width: calc(100% - 25px);
+}
+.header__title:hover img {
+  transform: rotateZ(360deg);
 }
 
 .header__menu,
@@ -42,21 +68,45 @@
 }
 
 .header__theme {
-  margin-right: 24px;
+  width: 32px;
+  height: 32px;
+  margin-right: 16px;
+  position: relative;
+  background: #ffffff;
+  border-radius: 16px;
+  transition: background 200ms ease;
+  cursor: pointer;
 }
 
 .header__theme img {
   width: 24px;
-  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  transition: opacity 200ms ease;
 }
 
 #light-theme {
-  display: none;
+  opacity: 0;
+}
+#dark-theme {
+  opacity: 100%;
+}
+.header__theme:hover {
+  background: #000000;
+}
+.header__theme:hover #light-theme {
+  opacity: 100%;
+}
+.header__theme:hover #dark-theme {
+  opacity: 0%;
 }
 
 .header__lang span {
   font-size: 1rem;
   font-weight: 700;
+  position: relative;
   cursor: pointer;
 }
 
@@ -68,4 +118,20 @@
   background: #000000;
   outline: none;
   border: none;
+}
+
+.header__lang span::after {
+  content: "";
+  height: 2px;
+  width: 0;
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #000000;
+  transition: width 200ms ease;
+}
+
+.header__lang span:hover::after {
+  width: 100%;
 }

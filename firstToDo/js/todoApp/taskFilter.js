@@ -26,14 +26,24 @@ function taskFilter() {
   })
 
   filterList.addEventListener('click', () => {
-    let eventTarget = event.target;
 
-    if (eventTarget.hasAttribute('data-checked')) {
-      console.log('checked');
-    }
-    if (eventTarget.hasAttribute('data-unchecked')) {
-      console.log('unchecked');
-    }
+  })
+
+  filterListElements.forEach(el => {
+    el.addEventListener('click', () => {
+      let newTarget = event.target;
+      let lastTarget = document.querySelector('.todo-app__filter-row span');
+      let setTarget = newTarget.cloneNode(true);
+      console.log(setTarget);
+
+      setTarget.classList.remove('todo-app__filter-element');
+      setTarget.classList.add('todo-app__filter-element_target');
+      lastTarget.replaceWith(setTarget);
+
+      lastTarget.classList.remove('todo-app__filter-element_target');
+      lastTarget.classList.add('todo-app__filter-element');
+      newTarget.replaceWith(lastTarget);
+    })
   })
 }
 

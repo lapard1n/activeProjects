@@ -59,11 +59,6 @@
   overflow: hidden;
 }
 
-[data-target] {
-  width: calc(100% - 20px - 45px);
-  padding-left: 20px;
-}
-
 .todo-app__filter-button {
   width: 45px;
   height: calc(100% + 10px);
@@ -136,6 +131,11 @@
 
 .todo-app__filter-element:hover {
   background-color: #c6c6c6;
+}
+
+.todo-app__filter-element_target {
+  width: calc(100% - 20px - 45px);
+  padding-left: 20px;
 }
 
 /* INPUT BOX */
@@ -337,122 +337,6 @@
   cursor: pointer;
 }
 
-/* @-webkit-keyframes line-animation {
-  0% {
-    width: 0;
-    left: 120%;
-    opacity: 0;
-  }
-  25% {
-    width: 25%;
-    left: 100%;
-    opacity: 25%;
-  }
-  50% {
-    width: 50%;
-    left: 0;
-    opacity: 50%;
-  }
-  75% {
-    width: 75%;
-    left: -20%;
-    opacity: 75%;
-  }
-  100% {
-    width: 120%;
-    left: 50%;
-    opacity: 100%;
-    transform: translateX(-50%) translateY(-50%);
-  }
-}
-
-@keyframes line-animation {
-  0% {
-    width: 0;
-    left: 120%;
-    opacity: 0;
-  }
-  25% {
-    width: 25%;
-    left: 100%;
-    opacity: 25%;
-  }
-  50% {
-    width: 50%;
-    left: 0;
-    opacity: 50%;
-  }
-  75% {
-    width: 75%;
-    left: -20%;
-    opacity: 75%;
-  }
-  100% {
-    width: 120%;
-    left: 50%;
-    opacity: 100%;
-    transform: translateX(-50%) translateY(-50%);
-  }
-}
-
-@-webkit-keyframes reverse-line {
-  0% {
-    width: 120%;
-    left: 50%;
-    opacity: 100%;
-    transform: translateX(-50%) translateY(-50%);
-  }
-  25% {
-    width: 75%;
-    left: -20%;
-    opacity: 75%;
-  }
-  50% {
-    width: 50%;
-    left: 0;
-    opacity: 50%;
-  }
-  75% {
-    width: 25%;
-    left: 100%;
-    opacity: 25%;
-  }
-  100% {
-    width: 0;
-    left: 120%;
-    opacity: 0;
-  }
-}
-
-@keyframes reverse-line {
-  0% {
-    width: 120%;
-    left: 50%;
-    opacity: 100%;
-    transform: translateX(-50%) translateY(-50%);
-  }
-  25% {
-    width: 75%;
-    left: -20%;
-    opacity: 75%;
-  }
-  50% {
-    width: 50%;
-    left: 0;
-    opacity: 50%;
-  }
-  75% {
-    width: 25%;
-    left: 100%;
-    opacity: 25%;
-  }
-  100% {
-    width: 0;
-    left: 120%;
-    opacity: 0;
-  }
-} */
-
 /* STYLES OF UPDOWNDUTTON */
 .scroll-arrow {
   width: 60px;
@@ -484,42 +368,6 @@
   -webkit-animation: way-down 500ms forwards;
   animation: way-down 500ms forwards;
 }
-
-/* @-webkit-keyframes way-up {
-  from {
-    transform: rotateX(0deg);
-  }
-  to {
-    transform: rotateX(180deg);
-  }
-}
-
-@keyframes way-up {
-  from {
-    transform: rotateX(0deg);
-  }
-  to {
-    transform: rotateX(180deg);
-  }
-}
-
-@-webkit-keyframes way-down {
-  from {
-    transform: rotateX(180deg);
-  }
-  to {
-    transform: rotateX(0deg);
-  }
-}
-
-@keyframes way-down {
-  from {
-    transform: rotateX(180deg);
-  }
-  to {
-    transform: rotateX(0deg);
-  }
-} */
 
 /* STYLES OF EDITOR */
 .todo-app__row_editor {

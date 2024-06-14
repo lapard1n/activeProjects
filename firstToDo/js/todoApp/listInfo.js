@@ -19,22 +19,25 @@ function listInfoListener() {
       inputBox.focus();
     }
 
-    if ((eventTarget.matches('.todo-app__clear') || eventTarget === document.querySelector('.todo-app__strike')) && !eventTarget.hasAttribute('disabled')) {
+    if (
+      (eventTarget.matches('.todo-app__clear') ||
+        eventTarget === document.querySelector('.todo-app__strike')) &&
+      !eventTarget.hasAttribute('disabled')
+    ) {
       let allTasks = document.querySelectorAll('.task');
 
-      allTasks.forEach(el => {
-        el.classList.add('task-deletion');
+      allTasks.forEach(element => {
+        element.classList.add('task-deletion');
       });
 
       setTimeout(() => {
         listContainer.innerHTML = '';
+
         personalObserver();
-        saveLocal();
       }, 500);
     }
 
     personalObserver();
-    saveLocal();
   })
 }
 

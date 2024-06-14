@@ -18,16 +18,33 @@ function saveLocal() {
 
 /**
  * ЗАГРУЗКА ДАННЫХ ИЗ localStorage
+ * ЕСЛИ getItem НЕ УКАЗАН, ПРОПИСЫВАЮ ДАННЫЕ ПО УМОЛЧАНИЮ
  *
  */
 function showLocal() {
   listContainer.innerHTML = localStorage.getItem('tasks');
-  numberCounter.innerHTML = localStorage.getItem('counter');
-  placeHolder.textContent = localStorage.getItem('placeholder');
-  if (localStorage.getItem('clear') === 'true') {
-    clearButton.setAttribute('disabled', 'disabled');
+
+  if (localStorage.getItem('counter') === null) {
+    let tasksQuantity = document.querySelectorAll('.todo-app__counter-value');
+
+    tasksQuantity[0].textContent = 'tasks: 0';
+    tasksQuantity[1].textContent = 'checked: 0';
+  } else {
+    numberCounter.innerHTML = localStorage.getItem('counter');
   }
-  if (localStorage.getItem('clear') === 'false') {
+
+  if (localStorage.getItem('placeholder') === null) {
+    placeHolder.textContent = 'Add your task right here~';
+  } else {
+    placeHolder.textContent = localStorage.getItem('placeholder');
+  }
+
+  if (
+    localStorage.getItem('clear') === 'true' ||
+    localStorage.getItem('clear') === null
+  ) {
+    clearButton.setAttribute('disabled', 'disabled');
+  } else {
     clearButton.removeAttribute('disabled');
   }
 }

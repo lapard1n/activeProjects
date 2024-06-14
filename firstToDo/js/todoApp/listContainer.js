@@ -41,7 +41,11 @@ function cloneTask(str) {
 function addingTask(event) {
   let regExpSpaceCheker = /\S/;
 
-  if (event.type === 'click' || (event.key === 'Enter' || event.code === 'Enter') && !event.shiftKey) {
+  if (
+    event.type === 'click' ||
+    (event.key === 'Enter' || event.code === 'Enter') &&
+    !event.shiftKey
+  ) {
     event.preventDefault();
 
     if (!inputPublish.hasAttribute('disabled')) {
@@ -51,7 +55,10 @@ function addingTask(event) {
       inputBox.value = '';
     }
 
-    if (!regExpSpaceCheker.test(inputBox.value) && !inputPublish.hasAttribute('disabled')) {
+    if (
+      !regExpSpaceCheker.test(inputBox.value) &&
+      !inputPublish.hasAttribute('disabled')
+    ) {
       inputPublish.setAttribute('disabled', 'disabled');
     }
 
@@ -61,7 +68,6 @@ function addingTask(event) {
     }
 
     personalObserver();
-    saveLocal();
   }
 }
 
@@ -139,10 +145,10 @@ function tasksEditor(event) {
   if (event.type === 'click') {
     if (eventTarget.matches('[data-delete]')) {
       taskElement.classList.add('task-deletion');
+
       setTimeout(() => {
         taskElement.remove();
         personalObserver();
-        saveLocal();
       }, 500);
     }
 
@@ -154,21 +160,23 @@ function tasksEditor(event) {
       pasteText(event);
     }
 
-    if (eventTarget.matches('.task__content') || eventTarget.matches('p')) {
+    if (
+      eventTarget.matches('.task__content') ||
+      eventTarget.matches('p')
+    ) {
       taskContent.classList.toggle('checked');
     }
   }
 
   if (
-    (event.key === 'Enter' || event.code === 'Enter')
-    && !event.shiftKey
-    && eventTarget.matches('.todo-app__row_editor textarea')
+    (event.key === 'Enter' || event.code === 'Enter') &&
+    !event.shiftKey &&
+    eventTarget.matches('.todo-app__row_editor textarea')
   ) {
     pasteText(event);
   }
 
   personalObserver();
-  saveLocal();
 }
 
 /**

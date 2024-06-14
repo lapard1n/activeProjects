@@ -1,5 +1,4 @@
 import { inputBox, inputPublish } from "./appElements.js";
-import { taskFilter } from "./taskFilter.js";
 
 /**
  * РАСШИРЕНИЕ ЭЛЕМЕНТА inputBox
@@ -35,11 +34,17 @@ function rowRangeFinder(thisRow, thisInput) {
 function inputBoxListener(thisRow, thisInput, thisButton) {
   let regExpSpaceCheker = /\S/;
 
-  if (!regExpSpaceCheker.test(thisInput.value) && !thisButton.hasAttribute('disabled')) {
+  if (
+    !regExpSpaceCheker.test(thisInput.value) &&
+    !thisButton.hasAttribute('disabled')
+  ) {
     thisButton.setAttribute('disabled', 'disabled');
   }
 
-  if (regExpSpaceCheker.test(thisInput.value) && thisButton.hasAttribute('disabled')) {
+  if (
+    regExpSpaceCheker.test(thisInput.value) &&
+    thisButton.hasAttribute('disabled')
+  ) {
     thisButton.removeAttribute('disabled');
   }
 
@@ -55,7 +60,6 @@ function inputBoxInit() {
   resizeTextarea(inputBox);
   rowRangeFinder(inputBox.parentElement, inputBox);
   inputBox.addEventListener('input', () => inputBoxListener(inputBox.parentElement, inputBox, inputPublish));
-  taskFilter();
 }
 
 export { resizeTextarea, rowRangeFinder, inputBoxListener, inputBoxInit }

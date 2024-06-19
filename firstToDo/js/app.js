@@ -3,40 +3,32 @@ import { inputBoxInit } from "./todoApp/inputBox.js";
 import { taskFilterInit } from "./todoApp/taskFilter.js";
 import { listContainerInit } from "./todoApp/listContainer.js";
 import { listInfoInit } from "./todoApp/listInfo.js";
+import { upDownScroll } from "./todoApp/upDownButton.js";
 import { oopsError } from "./pageState/temporaryCrutch.js";
 
 function pageInit() {
-  /**
-   * УУПС, КАЖЕТСЯ ЧТО-ТО НЕ РАБОТАЕТ...
-  */
+  // Уупс, кажется что-то не работает...
   oopsError();
 }
 pageInit();
 
 function appInit() {
-  /**
-   * ЗАГРУЗКА ДАННЫХ ИЗ localStorage
-  */
+  // Загрузка данных из localStorage:
   document.addEventListener("DOMContentLoaded", showLocal);
 
-  /**
-   * УПРАВЛЕНИЕ ВВОДОМ ТЕКСТА В inputBox
-  */
+  // Управление вводом текста в inputBox:
   inputBoxInit();
 
-  /**
-   * ФИЛЬТРАЦИЯ ЭЛЕМЕНТОВ В listContainer
-  */
+  // Фильтрация элементов в listContainer:
   taskFilterInit();
 
-  /**
-   * СОЗДАНИЕ И ДОБАВЛЕНИЕ ЭЛЕМЕНТА В listContainer ИЗ ТЕКСТА inputBox
-  */
+  // Создание и добавление элемента в listContainer из текста inputBox:
   listContainerInit();
 
-  /**
-   * ПОДСЧЕТ И ОЧИСТКА tasks, УПРАВЛЕНИЕ АНИМАЦИЕЙ listInfo
-  */
+  // Отображение количества task в listInfo и очистка listContainer:
   listInfoInit();
+
+  // Кнопка прокрутка страницы:
+  upDownScroll();
 }
 appInit();

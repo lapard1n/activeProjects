@@ -45,3 +45,29 @@ function taskChecker(eventTarget, taskElement) {
     taskContent.classList.remove('checked');
   }
 }
+
+// ФИЛЬТРАЦИЯ task ПО КЛАССУ task__content checked/task__content
+const inTheRow = appFilter.querySelector('.todo-app__filter-row span');
+const allItems = Array.from(document.querySelectorAll('.task'));
+
+allItems.forEach(element => {
+  switch (inTheRow.id) {
+    case 'all':
+      element.style.display = 'flex';
+      break;
+    case 'checked':
+      if (element.firstElementChild.classList.contains('checked')) {
+        element.style.display = 'flex';
+      } else {
+        element.style.display = 'none';
+      }
+      break;
+    case 'unchecked':
+      if (element.firstElementChild.classList.contains('unchecked')) {
+        element.style.display = 'flex';
+      } else {
+        element.style.display = 'none';
+      }
+      break;
+  }
+});

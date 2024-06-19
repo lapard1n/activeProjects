@@ -2,18 +2,21 @@ import {
   listInfo,
   inputBox,
   clearButton,
-  listContainer,
+  listContainer
 } from "./appElements.js";
-import { saveLocal } from "./appData.js";
+import {
+  refreshFilter
+} from "./taskFilter.js";
 import { personalObserver } from "./personalObserver.js";
 
 /**
- * ДЕЛЕГИРОВАНИЕ СОБЫТИЙ ДЛЯ listInfo
+ * Делегирование событий для listInfo:
  *
+ * @event listInfo#click
  */
 function listInfoListener() {
   listInfo.addEventListener('click', (event) => {
-    let eventTarget = event.target;
+    const eventTarget = event.target;
 
     if (eventTarget.matches('.todo-app__placeholder')) {
       inputBox.focus();
@@ -24,7 +27,7 @@ function listInfoListener() {
         eventTarget === document.querySelector('.todo-app__strike')) &&
       !eventTarget.hasAttribute('disabled')
     ) {
-      let allTasks = document.querySelectorAll('.task');
+      const allTasks = document.querySelectorAll('.task');
 
       allTasks.forEach(element => {
         element.classList.add('task-deletion');
@@ -33,6 +36,7 @@ function listInfoListener() {
       setTimeout(() => {
         listContainer.innerHTML = '';
 
+        refreshFilter();
         personalObserver();
       }, 500);
     }
@@ -42,12 +46,14 @@ function listInfoListener() {
 }
 
 /**
- * УПРАВЛЕНИЕ АНИМАЦИЕЙ clearButton
+ * Управление анимацией clearButton:
  *
+ * @event clearButton#mouseenter - выезд линии на элемент.
+ * @event clearButton#mouseleave - уход линии с элемента.
  */
 function clearButtonListener() {
   let animeState = false;
-  let clearLine = document.querySelector('.todo-app__strike');
+  const clearLine = document.querySelector('.todo-app__strike');
 
   clearButton.addEventListener('mouseenter', () => {
     if (!clearButton.hasAttribute("disabled")) {
@@ -65,8 +71,7 @@ function clearButtonListener() {
 }
 
 /**
- * ИНИЦИАЛИЗАЦИЯ МОДУЛЯ listInfo
- *
+ * Инициализация модуля listInfo:
  */
 function listInfoInit() {
   listInfoListener();

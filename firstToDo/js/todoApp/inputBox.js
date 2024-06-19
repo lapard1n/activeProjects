@@ -1,8 +1,9 @@
 import { inputBox, inputPublish } from "./appElements.js";
 
 /**
- * РАСШИРЕНИЕ ЭЛЕМЕНТА inputBox
+ * Увеличение размера элемента inputBox:
  *
+ * @param {object} thisInput Строка для ввода текста.
  */
 function resizeTextarea(thisInput) {
   let rowHeight = window.getComputedStyle(thisInput).lineHeight;
@@ -19,20 +20,25 @@ function resizeTextarea(thisInput) {
 }
 
 /**
- * ПОДСЧЕТ ВВОДИМЫХ СМВОЛОВ В СТРОКЕ inputBox
+ * Подсчет вводимых смволов в строке inputBox:
  *
+ * @param {object} thisRow Родитель элемента строки для ввода текста.
+ * @param {object} thisInput Строка для ввода текста.
  */
 function rowRangeFinder(thisRow, thisInput) {
-  let rowRange = thisRow.querySelector('.todo-app__range');
+  const rowRange = thisRow.querySelector('.todo-app__range');
   rowRange.textContent = `${thisInput.value.length}/404`;
 }
 
 /**
- * ПРОВЕРКА ВВОДА В ПОЛЕ inputBox
+ * Проверка ввода в поле inputBox:
  *
+ * @param {object} thisRow Родитель элемента строки для ввода текста.
+ * @param {object} thisInput Строка для ввода текста.
+ * @param {object} thisButton Кнопка для взаимодействия с текстом.
  */
 function inputBoxListener(thisRow, thisInput, thisButton) {
-  let regExpSpaceCheker = /\S/;
+  const regExpSpaceCheker = /\S/;
 
   if (
     !regExpSpaceCheker.test(thisInput.value) &&
@@ -53,12 +59,17 @@ function inputBoxListener(thisRow, thisInput, thisButton) {
 }
 
 /**
- * ИНИЦИАЛИЗАЦИЯ МОДУЛЯ inputBox И ФИЛЬТРА tasks
- *
+ * Инициализация модуля inputBox:
  */
 function inputBoxInit() {
   resizeTextarea(inputBox);
   rowRangeFinder(inputBox.parentElement, inputBox);
+
+  /**
+  * Слушатель события ввода, для изменения inputBox:
+  *
+  * @event inputBox#input
+  */
   inputBox.addEventListener('input', () => inputBoxListener(inputBox.parentElement, inputBox, inputPublish));
 }
 

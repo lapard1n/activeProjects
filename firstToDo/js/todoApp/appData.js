@@ -1,13 +1,12 @@
 import {
   listContainer,
-  numberCounter,
   placeHolder,
   clearButton
 } from "./appElements.js";
+const numberCounter = document.querySelector('.todo-app__counter');
 
 /**
- * СОХРАНЕНИЕ ДАННЫХ В localStorage
- *
+ * Сохранение данных в localStorage:
  */
 function saveLocal() {
   localStorage.setItem('tasks', listContainer.innerHTML);
@@ -17,15 +16,13 @@ function saveLocal() {
 }
 
 /**
- * ЗАГРУЗКА ДАННЫХ ИЗ localStorage
- * ЕСЛИ getItem НЕ УКАЗАН, ПРОПИСЫВАЮ ДАННЫЕ ПО УМОЛЧАНИЮ
- *
+ * Загрузка данных из localStorage, если getItem не указан, то загружаю данные по умолчанию:
  */
 function showLocal() {
   listContainer.innerHTML = localStorage.getItem('tasks');
 
   if (localStorage.getItem('counter') === null) {
-    let tasksQuantity = document.querySelectorAll('.todo-app__counter-value');
+    const tasksQuantity = document.querySelectorAll('.todo-app__counter-value');
 
     tasksQuantity[0].textContent = 'tasks: 0';
     tasksQuantity[1].textContent = 'checked: 0';

@@ -7,12 +7,13 @@ import {
 import { saveLocal } from "./appData.js";
 
 /**
- * ОБРАБОТКА СОДЕРЖИМОГО listContainer И ОТОБРАЖЕНИЕ В listInfo
+ * Обработка содержимого listContainer и отображение в listInfo:
  *
+ * @description Симуляция MutationObserver для отслеживания содержимого.
  */
 function personalObserver() {
-  let tasksQuantity = listInfo.querySelectorAll('.todo-app__counter-value');
-  let numberChecked = listContainer.querySelectorAll('.task__content.checked');
+  const tasksQuantity = listInfo.querySelectorAll('.todo-app__counter-value');
+  const numberChecked = listContainer.querySelectorAll('.task__content.checked');
 
   tasksQuantity[0].textContent = `tasks: ${listContainer.childNodes.length}`;
   tasksQuantity[1].textContent = `checked: ${numberChecked.length}`;

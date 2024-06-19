@@ -1,24 +1,21 @@
+const wrapper = document.querySelector('.wrapper')
+const todoApp = document.querySelector('.todo-app');
+const scrollButton = document.querySelector('.scroll-arrow');
+const buttonImg = scrollButton.firstElementChild;
+
 /**
- * СОЗДАНИЕ КНОПКИ СКРОЛЛА СТРАНИЦЫ
- *
+ * Создание кнопки для скролла страницы:
  */
 function upDownScroll() {
-  const wrapper = document.querySelector('.wrapper')
-  const todoApp = document.querySelector('.todo-app');
-  const scrollButton = document.querySelector('.scroll-arrow');
-  const buttonImg = scrollButton.firstElementChild;
-
-  /**
-   * ПОЛУЧАЮ СУММУ ВЕРХНИХ ОТСТУПОВ wrapper
-   *
-   */
+  // Получаю сумму верхних отступов wrapper:
   let wrapperStyles = window.getComputedStyle(wrapper);
   let wrapperUpSize = Number(wrapperStyles.marginTop.replace(/\D/g, '')) +
     Number(wrapperStyles.paddingTop.replace(/\D/g, ''));
 
   /**
-   * НАБЛЮДАТЕЛЬ РАЗМЕРА У todoApp
+   * Наблюдатель за изменением размера у всего todoApp:
    *
+   * @param {object} todoApp - Непосредственно сам элемент.
    */
   const listObserver = new ResizeObserver(() => {
     if (todoApp.scrollHeight > (document.documentElement.clientHeight - wrapperUpSize)) {
@@ -34,8 +31,9 @@ function upDownScroll() {
   listObserver.observe(todoApp);
 
   /**
-   * ПЕРЕМЕЩЕНИЕ НА СТАНИЦЕ ПО КЛИКУ
+   * Перемещение на странице по клику:
    *
+   * @event scrollButton#click
    */
   scrollButton.addEventListener('click', () => {
     if (window.scrollY === 0) {
@@ -62,8 +60,10 @@ function upDownScroll() {
   });
 
   /**
-   * АНИМАЦИЯ ПОДСВЕЧИВАНИЯ ПРИ НАВЕДЕНИИ
+   * Анимация подсвечивания scrollButton при наведении:
    *
+   * @event scrollButton#mouseenter - подсвечивается при наведении
+   * @event scrollButton#mouseleave - затухает при отведении курсора
    */
   scrollButton.addEventListener('mouseenter', () => {
     scrollButton.style.opacity = '100%';
@@ -73,8 +73,9 @@ function upDownScroll() {
   })
 
   /**
-   * ПЕРЕМЕЩЕНИЕ НА СТАНИЦЕ ПРИ СКРОЛЛЕ
+   * Анимация стрелки scrollButton при скролле страницы:
    *
+   * @event window#scroll
    */
   window.addEventListener('scroll', () => {
     if (

@@ -10,16 +10,16 @@ const errorWindow = `
 `;
 
 /**
- * ВОЗВРАЩАЕТ АКТУАЛЬНЫЙ ЭЛЕМЕНТ warning-window
- *
+ * @returns {object} возвращает актуальный элемент warning-window.
  */
 function newErrorWindow() {
   return document.querySelector('.warning-window');
 }
 
 /**
- * ПРИ КЛИКЕ СОВЗДАЕТСЯ НОВОЕ ОКНО warning-window
+ * При клике создается новое окно warning-window:
  *
+ * @event headerMenu#click
  */
 function oopsError() {
   headerMenu.addEventListener('click', (e) => {

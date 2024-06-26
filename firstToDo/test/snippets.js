@@ -14,6 +14,18 @@ function createTask(str) {
   taskText.insertAdjacentText('afterbegin', str);
 }
 
+/**
+ * Создание элемента task через копирования узла:
+ *
+ * @param {string} str Текст из строки ввода.
+ */
+function cloneTask(str) {
+  const task = taskPrototype.cloneNode(true);
+  const taskText = task.querySelector('.task__content p');
+  taskText.innerText = str;
+  listContainer.prepend(task);
+}
+
 // ОБРЕЗАНИЕ ВНЕШНИХ ПРОБЕЛОВ СТРОКИ
 const regExpDeletionSpaces = (iputBox.value).replace(/^\s+|\s+$/g, '');
 const newString = (iputBox.value).trim();

@@ -5,12 +5,17 @@
   font-family: "Nunito", sans-serif;
   font-weight: 500;
   font-size: 18px;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
 }
 
 * ::-webkit-scrollbar {
-  width: 0;
+  display: none; /* Chromium */
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }
 
 .wrapper {

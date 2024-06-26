@@ -13,6 +13,7 @@ import {
   taskFiltering,
   refreshFilter
 } from "./taskFilter.js";
+import { dragAndDropInit } from "./dragAndDrop.js";
 const taskPrototype = document.getElementById('task-prototype');
 
 /**
@@ -21,18 +22,6 @@ const taskPrototype = document.getElementById('task-prototype');
 function removePrototypeTask() {
   taskPrototype.removeAttribute('id');
   listContainer.innerHTML = '';
-}
-
-/**
- * Создание элемента task через копирования узла:
- *
- * @param {string} str Текст из строки ввода.
- */
-function cloneTask(str) {
-  const task = taskPrototype.cloneNode(true);
-  const taskText = task.querySelector('.task__content p');
-  taskText.innerText = str;
-  listContainer.prepend(task);
 }
 
 /**
@@ -51,7 +40,16 @@ function addingTask(e) {
     e.preventDefault();
 
     if (!inputPublish.hasAttribute('disabled')) {
-      cloneTask(inputBox.value.trim());
+      const task = taskPrototype.cloneNode(true);
+      const taskText = task.querySelector('.task__content p');
+      taskText.innerText = inputBox.value.trim();
+      listContainer.prepend(task);
+
+      const taskContent = listContainer.querySelector('.task__content');
+      if (taskContent.scrollHeight > 125) {
+        taskContent.classList.add('task_scrolling');
+      }
+
       inputBox.parentNode.style.height = '30px';
       inputBox.setAttribute('rows', 1);
       inputBox.value = '';
@@ -69,6 +67,7 @@ function addingTask(e) {
       rowRangeFinder(inputBox.parentElement, inputBox);
     }
 
+    dragAndDropInit();
     refreshFilter();
     personalObserver();
   }
@@ -83,6 +82,7 @@ function changingTask(e) {
   const eventTarget = e.target.closest('.task');
   const textElement = eventTarget.querySelector('.task__content');
   const textItself = textElement.querySelector('p');
+  const eventBtn = eventTarget.querySelector('img.changing');
   const newRow = inputBox.parentElement.cloneNode(true);
   const newInput = newRow.querySelector('.todo-app__input');
   const newPublish = newRow.querySelector('.todo-app__publish');
@@ -91,9 +91,13 @@ function changingTask(e) {
   newRow.classList.add('todo-app__row_editor');
   newInput.value = textItself.innerText;
   newPublish.textContent = 'Edit';
+  textElement.classList.remove('task_scrolling');
   textElement.append(newRow);
 
-  eventTarget.querySelector('img[data-change]').style.display = 'none';
+  eventBtn.classList.toggle('changing');
+  eventBtn.classList.toggle('unchanging');
+  eventBtn.style.opacity = '40%';
+
   textItself.style.display = 'none';
 
   inputBoxListener(newRow, newInput, newPublish);
@@ -107,7 +111,9 @@ function changingTask(e) {
  */
 function pasteText(e) {
   const eventTarget = e.target.closest('.task');
+  const textElement = eventTarget.querySelector('.task__content');
   const textItself = eventTarget.querySelector('p');
+  const eventBtn = eventTarget.querySelector('img.unchanging');
   const newRow = eventTarget.querySelector('.todo-app__row_editor');
   const newInput = newRow.querySelector('.todo-app__input');
   const newPublish = newRow.querySelector('.todo-app__publish');
@@ -116,9 +122,16 @@ function pasteText(e) {
     textItself.innerText = newInput.value.trim();
     newRow.remove();
 
-    eventTarget.querySelector('img[data-change]').style.display = 'block';
+    eventBtn.classList.toggle('unchanging');
+    eventBtn.classList.toggle('changing');
+    eventBtn.style.opacity = '100%';
+
     textItself.style.display = 'block';
     eventTarget.classList.remove('task_editing');
+  }
+
+  if (textElement.scrollHeight > 125) {
+    textElement.classList.add('task_scrolling');
   }
 }
 
@@ -130,10 +143,16 @@ function pasteText(e) {
 function removeEditors() {
   document.addEventListener("DOMContentLoaded", () => {
     const mainTasks = listContainer.querySelectorAll('.task_editing');
+
     mainTasks.forEach(task => {
+      const eventBtn = task.querySelector('img.unchanging');
       task.querySelector('.todo-app__row_editor').remove();
       task.querySelector('p').style.display = 'block';
-      task.querySelector('img[data-change]').style.display = 'block';
+
+      eventBtn.classList.toggle('unchanging');
+      eventBtn.classList.toggle('changing');
+      eventBtn.style.opacity = '100%';
+
       task.classList.remove('task_editing');
     });
   });
@@ -149,11 +168,10 @@ function removeEditors() {
 function tasksEditor(e) {
   const eventTarget = e.target;
   const taskElement = eventTarget.closest('.task');
-  const taskContent = taskElement.querySelector('.task__content');
 
   if (e.type === 'click') {
-    if (eventTarget.matches('[data-delete]')) {
-      taskElement.classList.add('task-deletion');
+    if (eventTarget.matches('.deleting')) {
+      taskElement.classList.add('task_deleting');
 
       setTimeout(() => {
         taskElement.remove();
@@ -161,7 +179,7 @@ function tasksEditor(e) {
       }, 500);
     }
 
-    if (eventTarget.matches('[data-change]')) {
+    if (eventTarget.matches('.changing') && !taskElement.classList.contains('task_dragging')) {
       changingTask(e);
     }
 
@@ -173,6 +191,8 @@ function tasksEditor(e) {
       eventTarget.matches('.task__content') ||
       eventTarget.matches('p')
     ) {
+      const taskContent = taskElement.querySelector('.task__content');
+
       taskContent.classList.toggle('checked');
       taskContent.classList.toggle('unchecked');
     }
@@ -182,9 +202,9 @@ function tasksEditor(e) {
         eventTarget.matches('p')) &&
       document.querySelector('.todo-app__filter-element_target').matches('#all') === false
     ) {
-      taskElement.classList.toggle('task-deletion');
+      taskElement.classList.toggle('task_deleting');
       setTimeout(() => {
-        taskElement.classList.toggle('task-deletion');
+        taskElement.classList.toggle('task_deleting');
         taskFiltering();
         personalObserver();
       }, 500);

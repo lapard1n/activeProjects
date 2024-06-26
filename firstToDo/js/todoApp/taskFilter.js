@@ -6,7 +6,7 @@ const filterList = appFilter.querySelector('.todo-app__filter-list');
 /**
  * анимация появления списка filterList и переворота стрелки filterButtonImg:
  *
- * @event filterButton#click - непосредственно сама анимация
+ * @event filterButton#click - непосредственно сама анимация.
  * @event document#click - закртыие filterList при клике вне appFilter.
  */
 function filterAnimation() {

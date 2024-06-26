@@ -1,5 +1,5 @@
-const wrapper = document.querySelector('.wrapper')
-const todoApp = document.querySelector('.todo-app');
+import { todoApp } from "./appElements.js";
+const wrapper = document.querySelector('.wrapper');
 const scrollButton = document.querySelector('.scroll-arrow');
 const buttonImg = scrollButton.firstElementChild;
 
@@ -62,8 +62,8 @@ function upDownScroll() {
   /**
    * Анимация подсвечивания scrollButton при наведении:
    *
-   * @event scrollButton#mouseenter - подсвечивается при наведении
-   * @event scrollButton#mouseleave - затухает при отведении курсора
+   * @event scrollButton#mouseenter - подсвечивается при наведении.
+   * @event scrollButton#mouseleave - затухает при отведении курсора.
    */
   scrollButton.addEventListener('mouseenter', () => {
     scrollButton.style.opacity = '100%';

@@ -30,7 +30,7 @@ function listInfoListener() {
       const allTasks = document.querySelectorAll('.task');
 
       allTasks.forEach(element => {
-        element.classList.add('task-deletion');
+        element.classList.add('task_deleting');
       });
 
       setTimeout(() => {

@@ -5,11 +5,11 @@
     opacity: 100%;
   }
   50% {
-    transform: translateX(-40px);
+    transform: translateX(-30px);
     opacity: 50%;
   }
   to {
-    transform: translateX(40px);
+    transform: translateX(30px);
     opacity: 0%;
   }
 }
@@ -19,11 +19,11 @@
     opacity: 100%;
   }
   50% {
-    transform: translateX(-40px);
+    transform: translateX(-30px);
     opacity: 50%;
   }
   to {
-    transform: translateX(40px);
+    transform: translateX(30px);
     opacity: 0%;
   }
 }

@@ -49,6 +49,17 @@ function remDrag(e) {
  */
 function dragAndDrop() {
   const tasks = listContainer.querySelectorAll('.task');
+  const heightsForScroll = {
+    window: document.documentElement.clientHeight,
+    header: document.querySelector('header.header').offsetHeight,
+    footer: document.querySelector('footer.footer').offsetHeight,
+    list: listContainer.getBoundingClientRect(),
+
+    get listTop() { return this.list.top },
+    get listBot() { return this.list.bottom },
+    get gapBot() { return this.window - this.footer },
+    get gapTop() { return this.window - this.gapBot }
+  }
 
   tasks.forEach(task => {
     task.addEventListener('dragstart', (e) => {
@@ -87,6 +98,26 @@ function dragAndDrop() {
     });
 
     listContainer.insertBefore(draggingItem, nextSibling);
+  });
+
+  listContainer.addEventListener("drag", (e) => {
+    e.preventDefault()
+
+    const draggingItem = document.querySelector(".task_dragging");
+    const scrollSpeed = draggingItem.offsetHeight * 2;
+    function windowScroll(speed) {
+      window.scrollBy({
+        top: speed,
+        left: 0,
+        behavior: "smooth"
+      });
+    }
+
+    if (e.clientY < heightsForScroll.gapTop) {
+      windowScroll(-scrollSpeed);
+    } else if (e.clientY > heightsForScroll.gapBot) {
+      windowScroll(scrollSpeed);
+    }
   });
 
   listContainer.addEventListener("dragenter", (e) => e.preventDefault());

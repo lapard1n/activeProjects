@@ -83,3 +83,42 @@ allItems.forEach(element => {
       break;
   }
 });
+
+// МЕТОДЫ УДАЛЕНИЯ ПРОБЕЛОВ В МУЛЬТИСТРОКЕ:
+let someText = `
+
+          <span class="todo-app__counter-value">tasks: 0</span>
+          <span class="todo-app__counter-value">checked: 0</span>
+
+          `;
+console.log(someText.replace(/^\s+/gim, ''));
+console.log(someText.replace(/^\s+|\s+$/gim, ''));
+console.log(someText.split('\n').map((el, i) => el.match(/\S+/g) ? el.trim() : el = '').join('\n').trim());
+
+// ФУНКЦИЯ ПЕРЕВОРОТА СЛОВ ОТ 5 СИМВОЛОВ В СТРКОЕ:
+function spinWords00(s) {
+  return s.split(' ').map(w => w.length > 4 ? w.split('').reverse().join('') : w).join(' ');
+}
+function spinWords01(string) {
+  return string.replace(/\w{5,}/gim, (el) => { return el.split('').reverse().join('') })
+}
+
+// УДАЛЕНИЕ ВНЕШНИХ ПРОБЕЛОВ В СТОКЕ:
+const input = '   Hello, world!     ';
+input.replace(/^\s+|\s+$/g, '');
+input.trim();
+
+// ПРОВЕРКА СТРОКИ НА ЗАПОЛНЕННОСТЬ:
+function splitSpace00(str) {
+  str = str.split(' ').join('');
+  if (str) {
+    console.log(true, 'long');
+  } else {
+    console.log(false, 'long');
+  }
+}
+
+function splitSpace01(str) {
+  str = str.split(' ').join('');
+  return str ? console.log(str, true, 'short') : console.log(str, false, 'short');
+}
